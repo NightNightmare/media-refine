@@ -10,9 +10,12 @@ export default function Navbar() {
             MEDIA<span className="text-blue-600">REFINE</span>
           </span>
         </div>
+
+        {/* Botão de Início comentado para referência futura:
         <button className="text-xs font-bold bg-gray-900 text-white px-5 py-2 rounded-full hover:bg-blue-600 transition-all">
           Início
-        </button>
+        </button> 
+        */}
       </div>
     </nav>
   );
