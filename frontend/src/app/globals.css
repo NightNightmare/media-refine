@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@source "../components/**/*.{ts,tsx}";
+@source "./**/*.{ts,tsx}";
+
+/* Forçar o comportamento da tela */
+:root {
+  --background: #fafafa;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden; /* Remove o scroll lateral */
+  background-color: #fafafa;
+}
+
+/* Garante que o container principal não estique */
+main {
+  width: 100%;
+  max-width: 100vw;
+}
