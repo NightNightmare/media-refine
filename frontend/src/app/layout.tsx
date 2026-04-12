@@ -16,7 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MediaRefine Pro | Otimização Inteligente",
-  description: "Desenvolvido por [Nome da Tua Empresa]",
+  description: "A ferramenta definitiva para otimização de media com IA.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -28,18 +32,26 @@ export default function RootLayout({
     <html
       lang="pt-PT"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      suppressHydrationWarning
+      suppressHydrationWarning // Essencial para ignorar atributos injetados no HTML
     >
-      <body className="min-h-screen w-screen overflow-x-hidden bg-[#fafafa] flex flex-col">
-        {/* Navbar fixa no topo */}
+      <body 
+        className="min-h-screen w-screen overflow-x-hidden bg-[#fafafa] flex flex-col"
+        suppressHydrationWarning={true} // Bloqueia avisos causados por extensões no body
+      >
+        {/* Navbar e Footer com suppressHydrationWarning interno se necessário */}
         <Navbar />
 
-        {/* O main cresce para empurrar o footer para baixo */}
-        <main className="flex-1 flex flex-col" suppressHydrationWarning={true}>
+        {/* Adicionamos o suppressHydrationWarning aqui porque o erro 
+          mostra que as extensões estão a injetar atributos nas divs 
+          principais do conteúdo.
+        */}
+        <main 
+          className="flex-1 flex flex-col" 
+          suppressHydrationWarning={true}
+        >
           {children}
         </main>
 
-        {/* Rodapé no final da estrutura */}
         <Footer />
       </body>
     </html>
