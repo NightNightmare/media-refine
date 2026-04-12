@@ -11,6 +11,9 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'compress' | 'enhance'>('compress');
   const [status, setStatus] = useState<{ type: 'success' | 'error' | 'info' | null, msg: string }>({ type: null, msg: "" });
 
+  // Puxa a URL do .env.local
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   useEffect(() => {
     if (status.type === 'success') {
       const timer = setTimeout(() => {
@@ -31,6 +34,13 @@ export default function Home() {
 
   const processMedia = async () => {
     if (!file) return;
+
+    // Validação da variável de ambiente
+    if (!API_BASE_URL) {
+      setStatus({ type: 'error', msg: "Erro: NEXT_PUBLIC_API_BASE_URL não definida no .env.local" });
+      return;
+    }
+
     setLoading(true);
     setStatus({ type: 'info', msg: activeTab === 'compress' ? "A otimizar ficheiro..." : "A melhorar qualidade..." });
 
@@ -53,7 +63,7 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        `http://127.0.0.1:8000/${endpoint}/${urlParams}`,
+        `${API_BASE_URL}/${endpoint}/${urlParams}`,
         formData, { responseType: "blob" }
       );
 
@@ -67,6 +77,7 @@ export default function Home() {
       
       setStatus({ type: 'success', msg: "Sucesso! Ficheiro processado. A limpar em 5s..." });
     } catch (error) {
+      console.error("Erro na API:", error);
       setStatus({ type: 'error', msg: "Erro na ligação ao servidor." });
     } finally {
       setLoading(false);
@@ -142,7 +153,6 @@ export default function Home() {
               {file && !loading && (
                 <div className="mt-6 space-y-6 animate-in fade-in slide-in-from-bottom-2">
                   
-                  {/* Se for modo compressão, mostra intensidade */}
                   {activeTab === 'compress' && (
                     <div>
                       <p className="text-[10px] font-black text-gray-400 mb-3 text-center uppercase tracking-[0.2em]">Intensidade</p>
@@ -160,7 +170,6 @@ export default function Home() {
                     </div>
                   )}
 
-                  {/* Info Modo Melhoria */}
                   {activeTab === 'enhance' && (
                     <div className="bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100 text-center">
                       <p className="text-[11px] font-bold text-indigo-700">

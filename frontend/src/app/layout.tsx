@@ -35,7 +35,7 @@ export default function RootLayout({
         <Navbar />
 
         {/* O main cresce para empurrar o footer para baixo */}
-        <main className="flex-1 flex flex-col">
+        <main className="flex-1 flex flex-col" suppressHydrationWarning={true}>
           {children}
         </main>
 
