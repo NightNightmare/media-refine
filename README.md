@@ -1,4 +1,4 @@
-# 🎬 MediaRefine.pro
+# 🎬 MediaRefine
 
 ![Next.js](https://img.shields.io/badge/Next.js-000?style=for-the-badge&logo=next.js&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
