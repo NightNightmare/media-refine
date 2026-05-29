@@ -7,6 +7,9 @@
 
 O **MediaRefine** é uma solução Full-Stack robusta para otimização e melhoria de media. A plataforma utiliza inteligência algorítmica para reduzir o tamanho de ficheiros sem sacrificar a estética, oferecendo ferramentas de refinamento visual de nível profissional.
 
+## 🚀 Demo ao Vivo
+👉 [Experimentar agora](https://media-refine.vercel.app)
+
 ## 🏗️ Arquitetura do Sistema
 
 * **Frontend**: Interface reativa desenvolvida com **Next.js 14**, focada em UX/UI minimalista e feedback em tempo real.
